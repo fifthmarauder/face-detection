@@ -4,3 +4,72 @@
     justify-content: space-between;
     height: 100vh;
 }
+
+.container{
+    height: calc(100vh - 180px);
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    background-color: #F8FAFC;
+
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    height:300px;
+    width:50%;
+    padding: 25px 20px;
+    border-radius: 16px;
+    justify-content: space-between;
+    background-color: white;
+    border:1px solid #e5e5e5;
+}
+
+.cardTitle{
+    font-weight: 500;
+    font-size: 26px;
+   
+}
+
+.urlContainer{
+    display: flex;
+    flex-direction: column;
+    gap:8px;
+}
+
+.urlTitle{
+   
+    font-size: 18px;
+}
+
+.urlLinkContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.urlLink{
+    width:90%;
+    background-color: gray;
+    border: 1px solid black;
+}
+
+.divider{
+    display: flex;
+    align-items: center;
+    gap:5px
+}
+.line{
+    border-bottom: 1px solid gray;
+    flex: 1;
+}
+
+.button{
+    width:100%
+}
+
+.imageContainer{
+    display: flex;
+    flex-direction: column;
+    gap:8px;
+}
