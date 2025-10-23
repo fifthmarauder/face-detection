@@ -3,18 +3,16 @@ import styles from "./button.module.css";
 
 const Button = ({
   Icon,
-  backgroundColor,
-  textColor,
+  style,
   text
 }: {
   Icon: React.ReactNode;
-  backgroundColor: string;
-  textColor: string;
+  style:Object;
   text:string
 }) => {
   return (
     <>
-      <div className={styles.buttonContainer} style={{backgroundColor:backgroundColor,color:textColor}}>
+      <div className={styles.buttonContainer} style={style}>
        { Icon  }
         <div >{text}</div>
       </div>

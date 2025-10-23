@@ -19,7 +19,7 @@ const Page = () => {
                     <div className={styles.urlLink}>
                         url box
                     </div>
-                    <Button backgroundColor={"black"} textColor={"white"} Icon={<ChainIcon width={"16"} height={"16"} color={"gray"}/>} text={"Submit"}/>
+                    <Button style={{backgroundColor:"black" ,color:"white", border:"none"}} Icon={<ChainIcon width={"16"} height={"16"} color={"gray"}/>} text={"Submit"}/>
                     
                 </div>
             </div>
@@ -33,7 +33,7 @@ const Page = () => {
                     Upload from Computer
                 </div>
                 <div>
-                   <Button backgroundColor='white' textColor='black' text='Choose Image File' Icon={<UploadIcon width='16' height='16' color='black'/>}/>
+                   <Button style={{backgroundColor:"white" ,color:"black", border:"1px solid gray"}} text='Choose Image File' Icon={<UploadIcon width='16' height='16' color='black'/>}/>
                 </div>
             </div>
         </div>
