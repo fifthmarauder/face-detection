@@ -1,5 +1,8 @@
 import React from 'react'
 import styles from './page.module.css'
+import Button from '@/components/Button/button'
+import ChainIcon from '@/components/icon/chainIcon'
+import UploadIcon from '@/components/icon/uploadIcon'
 
 
 const Page = () => {
@@ -16,7 +19,8 @@ const Page = () => {
                     <div className={styles.urlLink}>
                         url box
                     </div>
-                    <div><button>Submit</button></div>
+                    <Button backgroundColor={"black"} textColor={"white"} Icon={<ChainIcon width={"16"} height={"16"} color={"gray"}/>} text={"Submit"}/>
+                    
                 </div>
             </div>
             <div className={styles.divider}>
@@ -29,9 +33,7 @@ const Page = () => {
                     Upload from Computer
                 </div>
                 <div>
-                    <button className={styles.button}>
-                        Choose Image File
-                    </button>
+                   <Button backgroundColor='white' textColor='black' text='Choose Image File' Icon={<UploadIcon width='16' height='16' color='black'/>}/>
                 </div>
             </div>
         </div>
