@@ -13,15 +13,15 @@ const UploadIcon = ({width,height,color}:{width:string,height:string,color:strin
         d="m8 8 4-4 4 4"
         stroke={color}
         strokeWidth="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M12 4v12M19 17v.6c0 1.33-1.07 2.4-2.4 2.4H7.4C6.07 20 5 18.93 5 17.6V17"
         stroke={color}
         strokeWidth="1.5"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
       />
     </svg>
   );
