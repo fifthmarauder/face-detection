@@ -1,0 +1,20 @@
+.parent {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  padding-left: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.imageBox {
+  width: 300px;
+  height: 350px;
+  border: 1px solid black;
+}

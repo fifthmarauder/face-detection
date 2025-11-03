@@ -5,15 +5,18 @@ import styles from "./page.module.css";
 import Button from "@/components/Button/button";
 import ChainIcon from "@/components/icon/chainIcon";
 import UploadIcon from "@/components/icon/uploadIcon";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const router = useRouter();
   const [urlContent, setUrlContent] = useState("");
   const [image, setImage] = useState<File | null>(null);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleSubmitUrl = () => {
-    console.log("submit clicked");
+    localStorage.setItem("image", JSON.stringify({ property: urlContent }));
+    router.push("/dashboard/newimage");
   };
 
   const handleUploadImage = () => {
@@ -22,6 +25,8 @@ const Page = () => {
 
   const handleInputChange = (e) => {
     setImage(e.target.files[0]);
+    const objectUrl = URL.createObjectURL(e.target.files[0]);
+    setUrlContent(objectUrl);
   };
 
   return (
@@ -39,7 +44,7 @@ const Page = () => {
                 onChange={(e) => {
                   setUrlContent(e.target.value);
                 }}
-              ></input>
+              />
 
               <Button
                 style={{
@@ -69,7 +74,7 @@ const Page = () => {
               onChange={(e) => {
                 handleInputChange(e);
               }}
-            ></input>
+            />
             <div className={styles.urlLinkContainer}>
               <Button
                 style={{
