@@ -19,11 +19,19 @@ const Page = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleSubmitUrl = () => {
+    if (!userURL) {
+      alert("Please enter a valid URL");
+      return;
+    };
     localStorage.setItem("image", JSON.stringify({ data: userURL }));
     router.push("/dashboard/detect");
   };
 
   const handleSubmitImage = () => {
+    if (!imageURL) {
+      alert("Please upload an image");
+      return;
+    };
     localStorage.setItem("image", JSON.stringify({ data: imageURL }));
     router.push("/dashboard/detect");
   };
