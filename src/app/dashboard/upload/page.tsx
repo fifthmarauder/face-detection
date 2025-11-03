@@ -1,21 +1,30 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
+
 import Button from "@/components/Button/button";
 import ChainIcon from "@/components/icon/chainIcon";
 import UploadIcon from "@/components/icon/uploadIcon";
-import { useRouter } from "next/navigation";
+
+import styles from "./page.module.css";
 
 const Page = () => {
   const router = useRouter();
-  const [urlContent, setUrlContent] = useState("");
+
+  const [userURL, setuserURL] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
+  const [imageURL, setImageURL] = useState<string | null>(null);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleSubmitUrl = () => {
-    localStorage.setItem("image", JSON.stringify({ property: urlContent }));
+    localStorage.setItem("image", JSON.stringify({ data: userURL }));
+    router.push("/dashboard/detect");
+  };
+
+  const handleSubmitImage = () => {
+    localStorage.setItem("image", JSON.stringify({ data: imageURL }));
     router.push("/dashboard/detect");
   };
 
@@ -23,10 +32,12 @@ const Page = () => {
     inputRef.current?.click();
   };
 
-  const handleInputChange = (e) => {
-    setImage(e.target.files[0]);
-    const objectUrl = URL.createObjectURL(e.target.files[0]);
-    setUrlContent(objectUrl);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleInputChange = (e: any) => {
+    const imageData = e.target.files[0];
+    const objectUrl = URL.createObjectURL(imageData);
+    setImage(imageData);
+    setImageURL(objectUrl);
   };
 
   return (
@@ -34,18 +45,19 @@ const Page = () => {
       <div className={styles.container}>
         <div className={styles.card}>
           <div className={styles.cardTitle}>Upload Image</div>
+
+          {/* Image URL */}
           <div className={styles.urlContainer}>
             <div className={styles.urlTitle}>Enter Image URL</div>
             <div className={styles.urlLinkContainer}>
               <input
                 placeholder="Enter Link Here"
                 style={{ flex: 1 }}
-                value={urlContent}
+                value={userURL}
                 onChange={(e) => {
-                  setUrlContent(e.target.value);
+                  setuserURL(e.target.value);
                 }}
               />
-
               <Button
                 style={{
                   backgroundColor: "black",
@@ -59,11 +71,15 @@ const Page = () => {
               </Button>
             </div>
           </div>
+
+          {/* Divider */}
           <div className={styles.divider}>
             <div className={styles.line}></div>
             <div>OR</div>
             <div className={styles.line}></div>
           </div>
+
+          {/* Upload Image */}
           <div className={styles.imageContainer}>
             <div className={styles.urlTitle}>Upload from Computer</div>
             <input
@@ -94,7 +110,7 @@ const Page = () => {
                   color: "white",
                   border: "none",
                 }}
-                onClick={handleSubmitUrl}
+                onClick={handleSubmitImage}
               >
                 <ChainIcon width={"16"} height={"16"} color={"gray"} />
                 <div>Submit</div>

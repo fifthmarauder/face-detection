@@ -17,7 +17,7 @@ const Page = () => {
   useEffect(() => {
     const storedUser = localStorage.getItem("image");
     // parse the stored JSON string to get the image data
-    const imageData = storedUser ? JSON.parse(storedUser).property : null;
+    const imageData = storedUser ? JSON.parse(storedUser).data : null;
     if (imageData) {
       setImage(imageData);
     }
