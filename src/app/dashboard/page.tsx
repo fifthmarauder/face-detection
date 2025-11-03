@@ -1,12 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState } from "react";
 import styles from "./page.module.css";
 import Button from "@/components/Button/button";
 import ChainIcon from "@/components/icon/chainIcon";
 import UploadIcon from "@/components/icon/uploadIcon";
 
 const Page = () => {
+  const [urlContent, setUrlContent] = useState("");
+  const [image, setImage] = useState<File | null>(null);
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleSubmitUrl = () => {
+    console.log("submit clicked");
+  };
+
+  const handleUploadImage = () => {
+    inputRef.current?.click();
+  };
+
+  const handleInputChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -15,7 +32,14 @@ const Page = () => {
           <div className={styles.urlContainer}>
             <div className={styles.urlTitle}>Enter Image URL</div>
             <div className={styles.urlLinkContainer}>
-              <input placeholder="Enter Link Here" style={{ flex: 1 }}></input>
+              <input
+                placeholder="Enter Link Here"
+                style={{ flex: 1 }}
+                value={urlContent}
+                onChange={(e) => {
+                  setUrlContent(e.target.value);
+                }}
+              ></input>
 
               <Button
                 style={{
@@ -23,12 +47,11 @@ const Page = () => {
                   color: "white",
                   border: "none",
                 }}
-                onClick={() => {
-                  console.log("submit button clicked");
-                }}
-                Icon={<ChainIcon width={"16"} height={"16"} color={"gray"} />}
-                text={"Submit"}
-              />
+                onClick={handleSubmitUrl}
+              >
+                <ChainIcon width={"16"} height={"16"} color={"gray"} />
+                <div>Submit</div>
+              </Button>
             </div>
           </div>
           <div className={styles.divider}>
@@ -38,19 +61,41 @@ const Page = () => {
           </div>
           <div className={styles.imageContainer}>
             <div className={styles.urlTitle}>Upload from Computer</div>
-
-            <Button
-              style={{
-                backgroundColor: "white",
-                color: "black",
-                border: "1px solid gray",
+            <input
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              ref={inputRef}
+              onChange={(e) => {
+                handleInputChange(e);
               }}
-              onClick={() => {
-                console.log("Upload image button clicked");
-              }}
-              text="Choose Image File"
-              Icon={<UploadIcon width="16" height="16" color="black" />}
-            />
+            ></input>
+            <div className={styles.urlLinkContainer}>
+              <Button
+                style={{
+                  backgroundColor: "white",
+                  color: "black",
+                  border: "1px solid gray",
+                  flex: 1,
+                }}
+                onClick={handleUploadImage}
+              >
+                <UploadIcon width="16" height="16" color="black" />
+                <div>Upload Image Icon</div>
+              </Button>
+              <Button
+                style={{
+                  backgroundColor: "black",
+                  color: "white",
+                  border: "none",
+                }}
+                onClick={handleSubmitUrl}
+              >
+                <ChainIcon width={"16"} height={"16"} color={"gray"} />
+                <div>Submit</div>
+              </Button>
+            </div>
+            {image && <div>{image.name}</div>}
           </div>
         </div>
       </div>
