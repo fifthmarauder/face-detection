@@ -16,7 +16,7 @@ const Page = () => {
 
   const handleSubmitUrl = () => {
     localStorage.setItem("image", JSON.stringify({ property: urlContent }));
-    router.push("/dashboard/newimage");
+    router.push("/dashboard/detect");
   };
 
   const handleUploadImage = () => {
