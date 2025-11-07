@@ -22,7 +22,7 @@ const Page = () => {
     if (!userURL) {
       alert("Please enter a valid URL");
       return;
-    };
+    }
     localStorage.setItem("image", JSON.stringify({ data: userURL }));
     router.push("/dashboard/detect");
   };
@@ -31,7 +31,7 @@ const Page = () => {
     if (!imageURL) {
       alert("Please upload an image");
       return;
-    };
+    }
     localStorage.setItem("image", JSON.stringify({ data: imageURL }));
     router.push("/dashboard/detect");
   };
@@ -40,7 +40,6 @@ const Page = () => {
     inputRef.current?.click();
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleInputChange = (e: any) => {
     const imageData = e.target.files[0];
     const objectUrl = URL.createObjectURL(imageData);
