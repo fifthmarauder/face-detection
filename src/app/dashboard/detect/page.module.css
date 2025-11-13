@@ -17,4 +17,14 @@
 
 .imageBox {
   border: 4px solid rgb(1, 1, 50);
+  position: relative;
+}
+
+.boundingBox {
+  position: absolute;
+  box-shadow: 0 0 0 3px #149df2 inset;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
 }

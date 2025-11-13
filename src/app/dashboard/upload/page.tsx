@@ -14,6 +14,7 @@ const Page = () => {
 
   const [userURL, setuserURL] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
+  const [imageBytes, setImageBytes] = useState<string | null>(null);
   const [imageURL, setImageURL] = useState<string | null>(null);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -32,7 +33,10 @@ const Page = () => {
       alert("Please upload an image");
       return;
     }
-    localStorage.setItem("image", JSON.stringify({ data: imageURL }));
+    localStorage.setItem(
+      "image",
+      JSON.stringify({ data: imageURL, imageBytes })
+    );
     router.push("/dashboard/detect");
   };
 
@@ -45,6 +49,16 @@ const Page = () => {
     const objectUrl = URL.createObjectURL(imageData);
     setImage(imageData);
     setImageURL(objectUrl);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result
+        ?.toString()
+        .replace("data:", "")
+        .replace(/^.+,/, ""); // remove metadata header
+
+      setImageBytes(base64String as string); // 👈 stores raw bytes (Base64)
+    };
+    reader.readAsDataURL(imageData);
   };
 
   return (
